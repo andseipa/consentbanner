@@ -1,8 +1,8 @@
 <div align="center" style="text-align: center; margin-bottom: 50px">
-<img src="docs/images/logo.svg" alt="Cookie Consent Logo" align="center" width="250">
 <h1 align="center">Cookie Consent</h1>
 
 An extended integration of [orestbida/cookieconsent](https://github.com/orestbida/cookieconsent) with support of the Google Tag Manager.
+
 </div>
 
 <br>
@@ -14,16 +14,16 @@ An extended integration of [orestbida/cookieconsent](https://github.com/orestbid
 
 ## Table of contents
 
-* [Integration into the GTM](#integration-into-the-gtm)
-* [Configuration](#configuration)
-* [Settings modal trigger](#settings-modal-trigger)
-* [Triggering tags based on the consent](#triggering-tags-based-on-the-consent)
-* [Accessing the wrapper in the JavaScript](#accessing-the-wrapper-in-the-javascript)
-* [Integration with CMP application](#integration-with-cmp-application)
-* [How the GTM integration works](#how-the-gtm-integration-works)
-* [How to update already published container](#how-to-update-already-published-containers)
-* [Development](#development)
-* [License](#license)
+- [Integration into the GTM](#integration-into-the-gtm)
+- [Configuration](#configuration)
+- [Settings modal trigger](#settings-modal-trigger)
+- [Triggering tags based on the consent](#triggering-tags-based-on-the-consent)
+- [Accessing the wrapper in the JavaScript](#accessing-the-wrapper-in-the-javascript)
+- [Integration with CMP application](#integration-with-cmp-application)
+- [How the GTM integration works](#how-the-gtm-integration-works)
+- [How to update already published container](#how-to-update-already-published-containers)
+- [Development](#development)
+- [License](#license)
 
 ## Integration into the GTM
 
@@ -50,7 +50,7 @@ The plugin is configurable using fields inside the tag definition.
 ### Basic options
 
 | Field                               | Description                                                                                                                                                                                                                                                  |
-|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Package version                     | Version of the package `68publishers/cookie-consent`. Valid inputs are the `latest` or a version in formats `x.x.x`, `x.x.x-beta.x` and `x.x.x-alpha-x`. For available versions see the [releases](https://github.com/68publishers/cookie-consent/releases). |
 | Make consent required               | The page will be blocked until a user action.                                                                                                                                                                                                                |
 | Show the widget as soon as possible | The widget will be displayed automatically on the page load. You must trigger the widget manually by calling `CookieConsentWrapper.unwrap().show()` if the option is disabled.                                                                               |
@@ -71,7 +71,7 @@ The settings modal has one special option with the name `Settings modal trigger 
 ### Cookies options
 
 | Field                       | Description                                                                                                                                                                                                            |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Cookie name                 | The name of a cookie value that holds information about the user's consent.                                                                                                                                            |
 | Cookie domain               | The domain name for the cookie that holds information about the user's consent, for example ".example.com". If the value is empty, it is automatically set in a browser using the "window.location.hostname" variable. |
 | Cookie expiration           | Expiration of the cookie in days.                                                                                                                                                                                      |
@@ -81,11 +81,11 @@ The settings modal has one special option with the name `Settings modal trigger 
 
 The following strategies are implemented:
 
-1) `Clear all except defined`<sup>*</sup> - All cookies except those you define in the field `Cookie names` will be deleted when the user denies any storage.
-2) `Clear defined only`<sup>*</sup> - All cookies you defined in the field `Cookie names` will be deleted when the user denies any storage.
-3) `Use cookie tables` - Cookie clearing is based on cookie tables from the original [plugin](https://github.com/orestbida/cookieconsent). Integration of [CMP application](#integration-with-cmp-application) is required for this option.
+1. `Clear all except defined`<sup>\*</sup> - All cookies except those you define in the field `Cookie names` will be deleted when the user denies any storage.
+2. `Clear defined only`<sup>\*</sup> - All cookies you defined in the field `Cookie names` will be deleted when the user denies any storage.
+3. `Use cookie tables` - Cookie clearing is based on cookie tables from the original [plugin](https://github.com/orestbida/cookieconsent). Integration of [CMP application](#integration-with-cmp-application) is required for this option.
 
-<sup>*</sup> There is no need to define a name from the `Cookie name` field because this cookie is never automatically deleted.
+<sup>\*</sup> There is no need to define a name from the `Cookie name` field because this cookie is never automatically deleted.
 
 ### Storage options
 
@@ -100,7 +100,7 @@ Five types of storage are available:
 Each storage defines the name of a trigger that will be invoked if the user provides consent. It is not necessary to use or display each storage in the widget. Also, the consent for the storage can be synchronized with the consent of another storage.
 
 | Field                                     | Description                                                                                                                                                                                                                  |
-|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Enabled by default                        | A storage has `granted` consent by default if the option is checked. Triggers will be invoked as soon as possible.                                                                                                           |
 | Display in the widget                     | A storage will be displayed inside the settings modal if the option is checked.                                                                                                                                              |
 | Readonly                                  | A toggle button for storage inside the settings modal will be disabled if the option is checked. Commonly used for functionality storage. The option is available only if the option `Display in the widget` is checked.     |
@@ -119,12 +119,6 @@ Then your configuration may look like this:
 
 ### Translation settings
 
-The package comes with the default translations for the following languages:
-
-- [English - en](src/resources/translations/en.json)
-- [Czech - cs](src/resources/translations/cs.json)
-- [Slovak - sk](src/resources/translations/sk.json)
-
 Translations that will be loaded and accessible for the widget are taken from the field `Locales`. Each locale must be defined on a new line.
 If you want to rewrite default translations or you want to add translations for a new locale then you can define them in a table `Translations`.
 
@@ -133,7 +127,7 @@ If you want to rewrite default translations or you want to add translations for 
 Locale detection can be affected with the following fields:
 
 | Field                     | Description                                                                                                                                                  |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Locale detection strategy | `Browser` to get user's browser language or `Document` to read a value from `<html lang="...">` of the current page.                                         |
 | Locale                    | You must define the website locale when the detection strategy is disabled. The locale must be one of the previously defined locales in the field `Locales`. |
 
@@ -144,12 +138,12 @@ You can define a message that will be displayed in the consent modal's descripti
 
 <img src="docs/images/revision-message-translation.png" alt="Revision message translation" width="600">
 
-*<sup>Note: the <a href="https://github.com/orestbida/cookieconsent/tree/v2.8.3#how-to-enablemanage-revisions">cookieconsent plugin</a> uses the placeholder `{{revision_message}}` but this notation is used by GTM for variables so the package comes with the placeholder `[[revision_message]]` instead.</sup>*
+_<sup>Note: the <a href="https://github.com/orestbida/cookieconsent/tree/v2.8.3#how-to-enablemanage-revisions">cookieconsent plugin</a> uses the placeholder `{{revision_message}}` but this notation is used by GTM for variables so the package comes with the placeholder `[[revision_message]]` instead.</sup>_
 
 ### Stylesheets
 
 | Field                       | Description                                                                                                                                                                                  |
-|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Include default stylesheets | The default stylesheet for the widget will be loaded into the page if the option is checked. We recommend keeping the option checked and adding custom stylesheets through the next options. |
 | External stylesheets        | The list of custom CSS stylesheets. One URL per line.                                                                                                                                        |
 | Internal stylesheet         | Custom CSS rules that will be injected into the page after default stylesheets and other external stylesheets.                                                                               |
@@ -157,17 +151,22 @@ You can define a message that will be displayed in the consent modal's descripti
 ### Page scripts
 
 | Field               | Description                                                          |
-|---------------------|----------------------------------------------------------------------|
+| ------------------- | -------------------------------------------------------------------- |
 | Manage page scripts | Enable if you want to easily manage existing `<script>` tags.        |
 | Script selector     | The name of a data attribute that is used for managed <script> tags. |
 
 Managing page scripts is disabled by default. When the feature is enabled then the following notation can be used for scripts you want to manage:
 
 ```html
-<script type="text/plain" data-cookiecategory="analytics_storage" src="analytics.js" defer></script>
+<script
+  type="text/plain"
+  data-cookiecategory="analytics_storage"
+  src="analytics.js"
+  defer
+></script>
 
 <script type="text/plain" data-cookiecategory="ad_storage" defer>
-    console.log('Ad storage enabled!');
+  console.log('Ad storage enabled!');
 </script>
 ```
 
@@ -178,21 +177,21 @@ This can be done automatically with the configuration field `Settings modal trig
 
 ```html
 <footer>
-    <div class="footer-container">
-        <div class="footer-item">
-            <a href="/terms-of-use">
-                <span class="footer-item-text">Terms of use</span>
-            </a>
-        </div>
-        <div class="footer-item">
-            <a href="/faq">FAQ</a>
-        </div>
-        <div class="footer-item">
-            <a href="/contact">
-                <span class="footer-item-text">Contact</span>
-            </a>
-        </div>
+  <div class="footer-container">
+    <div class="footer-item">
+      <a href="/terms-of-use">
+        <span class="footer-item-text">Terms of use</span>
+      </a>
     </div>
+    <div class="footer-item">
+      <a href="/faq">FAQ</a>
+    </div>
+    <div class="footer-item">
+      <a href="/contact">
+        <span class="footer-item-text">Contact</span>
+      </a>
+    </div>
+  </div>
 </footer>
 ```
 
@@ -204,26 +203,26 @@ Then the plugin injects a new item into the footer automatically:
 
 ```html
 <footer>
-    <div class="footer-container">
-        <div class="footer-item">
-            <a href="/terms-of-use">
-                <span class="footer-item-text">Terms of use</span>
-            </a>
-        </div>
-        <div class="footer-item">
-            <a href="/faq">FAQ</a>
-        </div>
-        <div class="footer-item">
-            <a href="/contact">
-                <span class="footer-item-text">Contact</span>
-            </a>
-        </div>
-        <div class="footer-item">
-            <a href="#cookie-settings" data-cc="c-settings">
-                <span class="footer-item-text">Cookie settings</span>
-            </a>
-        </div>
+  <div class="footer-container">
+    <div class="footer-item">
+      <a href="/terms-of-use">
+        <span class="footer-item-text">Terms of use</span>
+      </a>
     </div>
+    <div class="footer-item">
+      <a href="/faq">FAQ</a>
+    </div>
+    <div class="footer-item">
+      <a href="/contact">
+        <span class="footer-item-text">Contact</span>
+      </a>
+    </div>
+    <div class="footer-item">
+      <a href="#cookie-settings" data-cc="c-settings">
+        <span class="footer-item-text">Cookie settings</span>
+      </a>
+    </div>
+  </div>
 </footer>
 ```
 
@@ -255,13 +254,13 @@ A callback is invoked when the wrapper is fully initialized or directly if every
 
 ```html
 <script>
-    CookieConsentWrapper.on('init', function () {
-        if (CookieConsentWrapper.allowedCategory('analytics_storage')) {
-            // check if the analytics_storage is granted
-        }
-        
-        CookieConsentWrapper.unwrap(); // get the original cookie consent plugin
-    });
+  CookieConsentWrapper.on("init", function () {
+    if (CookieConsentWrapper.allowedCategory("analytics_storage")) {
+      // check if the analytics_storage is granted
+    }
+
+    CookieConsentWrapper.unwrap(); // get the original cookie consent plugin
+  });
 </script>
 ```
 
@@ -269,15 +268,18 @@ A callback is invoked when the wrapper is fully initialized or directly if every
 
 ```html
 <script>
-    CookieConsentWrapper.on('consent:first-action', function (consent) {
-        // called on the first user's action
-    });
-    CookieConsentWrapper.on('consent:accepted', function (consent) {
-      // called on every page load after the first user's action
-    });
-    CookieConsentWrapper.on('consent:changed', function (consent, changedCategories) {
+  CookieConsentWrapper.on("consent:first-action", function (consent) {
+    // called on the first user's action
+  });
+  CookieConsentWrapper.on("consent:accepted", function (consent) {
+    // called on every page load after the first user's action
+  });
+  CookieConsentWrapper.on(
+    "consent:changed",
+    function (consent, changedCategories) {
       // called when preferences changed
-    });
+    }
+  );
 </script>
 ```
 
@@ -285,15 +287,15 @@ A callback is invoked when the wrapper is fully initialized or directly if every
 
 ```html
 <script>
-    CookieConsentWrapper.on('locale:change', function (locale) {
-        // called when the plugin locale is changed through method `CookieConsentWrapper.changeLocale()`
-        console.log(locale + '!');
-    });
-    
-    // ...
+  CookieConsentWrapper.on("locale:change", function (locale) {
+    // called when the plugin locale is changed through method `CookieConsentWrapper.changeLocale()`
+    console.log(locale + "!");
+  });
 
-    CookieConsentWrapper.changeLocale('cs', true) // cs!
-    CookieConsentWrapper.changeLocale('en', true) // en!
+  // ...
+
+  CookieConsentWrapper.changeLocale("en", true); // en!
+  CookieConsentWrapper.changeLocale("no", true); // en!
 </script>
 ```
 
@@ -331,11 +333,11 @@ Below this field you can define which columns the cookie table should contain.
 #### Consent initialization
 
 - :fire: A tag that is associated with the [Cookie Consent Template](/gtm_template.tpl) is fired
-    - :gear: A configuration for `CookieConsentWrapper` object is created from values defined inside the tag
-    - :ballot_box_with_check: The default consent is resolved according to the configuration and already existent user preferences
-    - :arrows_counterclockwise: The default consent is sent into [native Google Consent API](https://developers.google.com/tag-platform/devguides/consent#gtag.js)
-    - :hourglass_flowing_sand: Custom [triggers](#triggering-tags-based-on-the-consent) for granted storage types are scheduled into a `gtag` function
-    - :arrow_double_down: A script with the wrapper initialization is injected into a page
+  - :gear: A configuration for `CookieConsentWrapper` object is created from values defined inside the tag
+  - :ballot_box_with_check: The default consent is resolved according to the configuration and already existent user preferences
+  - :arrows_counterclockwise: The default consent is sent into [native Google Consent API](https://developers.google.com/tag-platform/devguides/consent#gtag.js)
+  - :hourglass_flowing_sand: Custom [triggers](#triggering-tags-based-on-the-consent) for granted storage types are scheduled into a `gtag` function
+  - :arrow_double_down: A script with the wrapper initialization is injected into a page
 
 #### GTM Container loaded
 
@@ -344,12 +346,12 @@ Below this field you can define which columns the cookie table should contain.
 #### Page loaded
 
 - :fast_forward: The `CookieConsentWrapper` object is fully initialized
-    - :fast_forward: The [original plugin](https://github.com/orestbida/cookieconsent) is initialized
-    - :fire: Callbacks for an [event](#init-event) `CookieConsentWrapper.on('init')` are fired
-    - :eye: The consent modal is shown if a user has not yet agreed to the use of cookies
-        - :fire: After user's action, callbacks for an [event](#consent-events) `CookieConsentWrapper.on('consent:first-action')` are fired
-        - :arrows_counterclockwise: The consent is sent into the CMP application
-    - :fire: Callbacks for an [event](#consent-events) `CookieConsentWrapper.on('consent:accepted')` are fired
+  - :fast_forward: The [original plugin](https://github.com/orestbida/cookieconsent) is initialized
+  - :fire: Callbacks for an [event](#init-event) `CookieConsentWrapper.on('init')` are fired
+  - :eye: The consent modal is shown if a user has not yet agreed to the use of cookies
+    - :fire: After user's action, callbacks for an [event](#consent-events) `CookieConsentWrapper.on('consent:first-action')` are fired
+    - :arrows_counterclockwise: The consent is sent into the CMP application
+  - :fire: Callbacks for an [event](#consent-events) `CookieConsentWrapper.on('consent:accepted')` are fired
 
 #### User updates his preferences through the setting modal
 
@@ -383,8 +385,9 @@ $ npm run build:dev # or prod
 ```
 
 Paths of output files are:
- - `~/build/cookie-consent.js` (dev mode)
- - `~/dist/cookie-consent.min.js` (production mode)
+
+- `~/build/cookie-consent.js` (dev mode)
+- `~/dist/cookie-consent.min.js` (production mode)
 
 A simple demo page without real GTM is located in `~/build/index.html`. To show the demo in your browser run:
 

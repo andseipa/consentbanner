@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Cookie consent wrapper</title>
-        <script>
-            function logEvent(line) {
-                var code = document.createElement('pre');
-                code.innerText = line;
-                code.style = 'padding: 10px 0';
+  <head>
+    <meta charset="utf-8" />
+    <title>Cookie consent wrapper</title>
+    <script>
+      function logEvent(line) {
+        var code = document.createElement("pre");
+        code.innerText = line;
+        code.style = "padding: 10px 0";
 
-                document.getElementById('event-log').appendChild(code);
-            }
+        document.getElementById("event-log").appendChild(code);
+      }
 
-            window.dataLayer = {
-                push: function (args) {
-                    logEvent('DataLayer push: ' + JSON.stringify(args));
-                }
-            };
-        </script>
+      window.dataLayer = {
+        push: function (args) {
+          logEvent("DataLayer push: " + JSON.stringify(args));
+        },
+      };
+    </script>
 
-        <script src="./cookie-consent.js" type="text/javascript"></script>
+    <!-- <script src="./cookie-consent.js" type="text/javascript"></script> -->
+    <script src="../dist/cookie-consent.min.js" type="text/javascript"></script>
 
-        <script>
-            CookieConsentWrapper.on('init', function () {
-                logEvent('CookieConsentWrapper initialized.');
-            });
+    <script>
+      CookieConsentWrapper.on("init", function () {
+        logEvent("CookieConsentWrapper initialized.");
+      });
 
-            CookieConsentWrapper.on('consent:first-action', function (consent) {
-                logEvent('Event consent:first-action triggered. ' + JSON.stringify(consent));
-            });
+      CookieConsentWrapper.on("consent:first-action", function (consent) {
+        logEvent(
+          "Event consent:first-action triggered. " + JSON.stringify(consent)
+        );
+      });
 
-            CookieConsentWrapper.on('consent:accepted', function (consent) {
-                logEvent('Event consent:accepted triggered. ' + JSON.stringify(consent));
-            });
+      CookieConsentWrapper.on("consent:accepted", function (consent) {
+        logEvent(
+          "Event consent:accepted triggered. " + JSON.stringify(consent)
+        );
+      });
 
-            CookieConsentWrapper.on('consent:changed', function (consent, changed) {
-                logEvent('Event consent:changed triggered. ' + JSON.stringify(consent) + ', ' + JSON.stringify(changed));
-            });
+      CookieConsentWrapper.on("consent:changed", function (consent, changed) {
+        logEvent(
+          "Event consent:changed triggered. " +
+            JSON.stringify(consent) +
+            ", " +
+            JSON.stringify(changed)
+        );
+      });
 
-            // CMP integration
-            /*CookieConsentWrapper.setCmpApiOptions({
+      // CMP integration
+      /*CookieConsentWrapper.setCmpApiOptions({
                 url: 'http://localhost:8888/',
                 project: 'demo',
                 consent_api_enabled: true,
@@ -51,86 +61,98 @@
                 email: 'test@example.com'
             };*/
 
-            CookieConsentWrapper.setPluginOptions({
-                cookie_name: 'consent-settings',
-                force_consent: true,
-                page_scripts: true
-            });
+      CookieConsentWrapper.setPluginOptions({
+        cookie_name: "consent-settings",
+        force_consent: true,
+        page_scripts: true,
+      });
 
-            CookieConsentWrapper.setAutoClearOptions({
-                enabled: true,
-                strategy: 'clear_all_except_defined',
-            });
+      CookieConsentWrapper.setAutoClearOptions({
+        enabled: true,
+        strategy: "clear_all_except_defined",
+      });
 
-            CookieConsentWrapper.setConsentModalOptions({
-                position: 'middle center',
-                secondary_button_role: 'accept_necessary',
-                show_third_button: true,
-            });
+      CookieConsentWrapper.setConsentModalOptions({
+        position: "middle center",
+        secondary_button_role: "accept_necessary",
+        show_third_button: true,
+      });
 
-            CookieConsentWrapper.setSettingsModalOptions({
-                modal_trigger_selector: 'footer .footer-item'
-            });
+      CookieConsentWrapper.setSettingsModalOptions({
+        modal_trigger_selector: "footer .footer-item",
+      });
 
-            CookieConsentWrapper.loadTranslations('en');
+      CookieConsentWrapper.loadTranslations("en");
 
-            CookieConsentWrapper.addStorage({
-                name: 'functionality_storage',
-                enabled_by_default: true,
-                display_in_widget: true,
-                readonly: true
-            });
+      CookieConsentWrapper.addStorage({
+        name: "functionality_storage",
+        enabled_by_default: true,
+        display_in_widget: true,
+        readonly: true,
+      });
 
-            CookieConsentWrapper.addStorage({
-                name: 'personalization_storage',
-                sync_consent_with: 'functionality_storage'
-            });
+      CookieConsentWrapper.addStorage({
+        name: "personalization_storage",
+        sync_consent_with: "functionality_storage",
+      });
 
-            CookieConsentWrapper.addStorage({
-                name: 'security_storage',
-                display_in_widget: false,
-            });
+      CookieConsentWrapper.addStorage({
+        name: "security_storage",
+        display_in_widget: false,
+      });
 
-            CookieConsentWrapper.addStorage({
-                name: 'ad_storage',
-                display_in_widget: true
-            });
+      CookieConsentWrapper.addStorage({
+        name: "ad_storage",
+        display_in_widget: true,
+      });
 
-            CookieConsentWrapper.addStorage({
-                name: 'analytics_storage',
-                display_in_widget: true
-            });
+      CookieConsentWrapper.addStorage({
+        name: "analytics_storage",
+        display_in_widget: true,
+      });
 
-            CookieConsentWrapper.addEventTrigger('functionality_storage_event', ['functionality_storage']);
-            CookieConsentWrapper.addEventTrigger('personalization_storage_event', ['personalization_storage']);
-            CookieConsentWrapper.addEventTrigger('security_storage_event', ['security_storage']);
-            CookieConsentWrapper.addEventTrigger('ad_storage_event', ['ad_storage']);
-            CookieConsentWrapper.addEventTrigger('analytics_storage_event', ['analytics_storage']);
+      CookieConsentWrapper.addEventTrigger("functionality_storage_event", [
+        "functionality_storage",
+      ]);
+      CookieConsentWrapper.addEventTrigger("personalization_storage_event", [
+        "personalization_storage",
+      ]);
+      CookieConsentWrapper.addEventTrigger("security_storage_event", [
+        "security_storage",
+      ]);
+      CookieConsentWrapper.addEventTrigger("ad_storage_event", ["ad_storage"]);
+      CookieConsentWrapper.addEventTrigger("analytics_storage_event", [
+        "analytics_storage",
+      ]);
 
-            CookieConsentWrapper.addEventTrigger('fb_pixel_event', ['ad_storage', 'analytics_storage'], 'and');
-        </script>
-    </head>
-    <body>
-        <main style="max-width: 800px; margin: 0 auto; padding: 20px">
-            <h1 style="text-align: center">Demo page</h1>
-            <h2 style="margin-top: 40px;">Event log:</h2>
-            <div id="event-log" style="margin-top: 10px; overflow-x: scroll;"></div>
+      CookieConsentWrapper.addEventTrigger(
+        "fb_pixel_event",
+        ["ad_storage", "analytics_storage"],
+        "and"
+      );
+    </script>
+  </head>
+  <body>
+    <main style="max-width: 800px; margin: 0 auto; padding: 20px">
+      <h1 style="text-align: center">Demo page</h1>
+      <h2 style="margin-top: 40px">Event log:</h2>
+      <div id="event-log" style="margin-top: 10px; overflow-x: scroll"></div>
 
-            <footer style="margin-top: 100px; display: flex; justify-content: center">
-                <div class="footer-item" style="padding: 10px 20px">
-                    <a href="#item-1"><span>First link</span></a>
-                </div>
-                <div class="footer-item" style="padding: 10px 20px">
-                    <a href="#item-2"><span>Second link</span></a>
-                </div>
-                <div class="footer-item" style="padding: 10px 20px">
-                    <a href="#item-3"><span>Third link</span></a>
-                </div>
-            </footer>
-        </main>
+      <footer style="margin-top: 100px; display: flex; justify-content: center">
+        <div class="footer-item" style="padding: 10px 20px">
+          <a href="#item-1"><span>First link</span></a>
+        </div>
+        <div class="footer-item" style="padding: 10px 20px">
+          <a href="#item-2"><span>Second link</span></a>
+        </div>
+        <div class="footer-item" style="padding: 10px 20px">
+          <a href="#item-3"><span>Third link</span></a>
+        </div>
+      </footer>
+    </main>
 
-        <script type="text/plain" data-cookiecategory="analytics_storage">
-            logEvent('Page script for analytics storage loaded.');
-        </script>
-    </body>
+    <script type="text/plain" data-cookiecategory="analytics_storage">
+      logEvent('Page script for analytics storage loaded.');
+    </script>
+  </body>
 </html>
